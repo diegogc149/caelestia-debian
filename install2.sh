@@ -177,23 +177,23 @@ sudo meson install -C build
 
 # ========================================================================================================================================
 # ========================================================================================================================================
-#echo 'deb http://download.opensuse.org/repositories/home:/AvengeMedia:/danklinux/Debian_Testing/ /' | sudo tee /etc/apt/sources.list.d/home:AvengeMedia:danklinux.list
-#curl -fsSL https://download.opensuse.org/repositories/home:AvengeMedia:danklinux/Debian_Testing/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_AvengeMedia_danklinux.gpg > /dev/null
-#sudo apt update
-#sudo apt install quickshell-git
+echo 'deb http://download.opensuse.org/repositories/home:/AvengeMedia:/danklinux/Debian_Testing/ /' | sudo tee /etc/apt/sources.list.d/home:AvengeMedia:danklinux.list
+curl -fsSL https://download.opensuse.org/repositories/home:AvengeMedia:danklinux/Debian_Testing/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_AvengeMedia_danklinux.gpg > /dev/null
+sudo apt update
+sudo apt install quickshell-git
 # ========================================================================================================================================
 # ========================================================================================================================================
 
 # 5. Build and Install Quickshell from source
-echo "=== Building Quickshell from source ==="
-if [ ! -d "$WORK_DIR/quickshell" ]; then
-  git clone --recursive https://github.com/outfoxxed/quickshell.git "$WORK_DIR/quickshell"
-fi
-cd "$WORK_DIR/quickshell"
-rm -rf build
-cmake -GNinja -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DVENDOR_CPPTRACE=ON -DINSTALL_QMLDIR=/usr/lib/x86_64-linux-gnu/qt6/qml
-cmake --build build -j$(nproc)
-sudo cmake --install build
+#echo "=== Building Quickshell from source ==="
+#if [ ! -d "$WORK_DIR/quickshell" ]; then
+#  git clone --recursive https://github.com/outfoxxed/quickshell.git "$WORK_DIR/quickshell"
+#fi
+#cd "$WORK_DIR/quickshell"
+#rm -rf build
+#cmake -GNinja -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DVENDOR_CPPTRACE=ON -DINSTALL_QMLDIR=/usr/lib/x86_64-linux-gnu/qt6/qml
+#cmake --build build -j$(nproc)
+#sudo cmake --install build
 
 #5.1 Build and Install qt6-m3shapes from source
 echo "=== Building qt6-m3shapes-git from source ==="
@@ -206,6 +206,7 @@ mkdir build && cd build
 cmake .. -G Ninja -DCMAKE_CXX_COMPILER=clang++
 ninja
 sudo ninja install
+sudo rm -rf /usr/lib/x86_64-linux-gnu/qt6/qml/M3Shapes
 sudo ln -s /usr/local/lib/qt6/qml/M3Shapes /usr/lib/x86_64-linux-gnu/qt6/qml/M3Shapes
 
 # 7. Install Caelestia CLI (with Debian Patches)
@@ -273,7 +274,7 @@ fi
 # Set theme to dynamic by default
 cd "$HOME/"
 wget https://images4.alphacoders.com/132/thumb-1920-1322426.jpeg
-caelestia wallpaper -f "$HOME/thumb-1920-1322426.jpeg"
+~/.local/bin/caelestia wallpaper -f "$HOME/thumb-1920-1322426.jpeg"
 ~/.local/bin/caelestia scheme set --name dynamic
 
 # 10. Install EasyEffects Dolby Atmos & HIFI Presets

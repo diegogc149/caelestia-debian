@@ -9,7 +9,7 @@ Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
 EOF
 
 sudo apt update
-sudo apt install qt6-base-dev qt6-base-dev-tools qt6-base-private-dev \
+sudo apt install -t experimental qt6-base-dev qt6-base-dev-tools qt6-base-private-dev \
   qt6-declarative-dev qt6-declarative-dev-tools \
   qt6-declarative-private-dev qml6-module-qtquick-effects \
   qt6-shadertools-dev \
@@ -58,6 +58,12 @@ meson setup build --prefix=/usr/local --buildtype=release
 meson compile -C build
 sudo meson install -C build
 
+#echo 'deb http://download.opensuse.org/repositories/home:/AvengeMedia:/danklinux/Debian_Testing/ /' | sudo tee /etc/apt/sources.list.d/home:AvengeMedia:danklinux.list
+#curl -fsSL https://download.opensuse.org/repositories/home:AvengeMedia:danklinux/Debian_Testing/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_AvengeMedia_danklinux.gpg > /dev/null
+#sudo apt update
+#sudo apt install quickshell-git
+
+
 # 5. Build and Install Quickshell from source
 echo "=== Building Quickshell from source ==="
 if [ ! -d "$WORK_DIR/quickshell" ]; then
@@ -80,6 +86,7 @@ mkdir build && cd build
 cmake .. -G Ninja -DCMAKE_CXX_COMPILER=clang++
 ninja
 sudo ninja install
+sudo rm -rf /usr/lib/x86_64-linux-gnu/qt6/qml/M3Shapes
 sudo ln -s /usr/local/lib/qt6/qml/M3Shapes /usr/lib/x86_64-linux-gnu/qt6/qml/M3Shapes
 
 # 7. Install Caelestia CLI (with Debian Patches)
@@ -146,7 +153,7 @@ fi
 
 # Set theme to dynamic by default
 wget https://images4.alphacoders.com/132/thumb-1920-1322426.jpeg
-caelestia wallpaper -f "$HOME/thumb-1920-1322426.jpeg"
+~/.local/bin/caelestia wallpaper -f "$HOME/thumb-1920-1322426.jpeg"
 ~/.local/bin/caelestia scheme set --name dynamic
 
 # 10. Install EasyEffects Dolby Atmos & HIFI Presets
