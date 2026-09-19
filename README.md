@@ -18,7 +18,7 @@ no abre caelestia-shell (ejecutando ´caelestia shell -d´), ejecuta el script
 ifnotinstall.sh para crear el FrankenDebian (solo si eres insistente).
 
 ```
-git clone <https://github.com/diegogc149/caelestia-debian>
+git clone https://github.com/diegogc149/caelestia-debian
 cd caelestia-debian
 chmod +x install2.sh && chmod +x ifnotinstall.sh
 bash install2.sh
