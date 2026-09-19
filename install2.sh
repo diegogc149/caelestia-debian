@@ -271,6 +271,7 @@ if [ -d "$HOME/caelestia-dots/config" ]; then
 fi
 
 # Set theme to dynamic by default
+cd "$HOME/"
 wget https://images4.alphacoders.com/132/thumb-1920-1322426.jpeg
 caelestia wallpaper -f "$HOME/thumb-1920-1322426.jpeg"
 ~/.local/bin/caelestia scheme set --name dynamic
