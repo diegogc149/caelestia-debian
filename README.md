@@ -14,7 +14,7 @@ cracks unu.
 ## Instalación
 
 Solo clona el repositorio y luego ejecuta install2.sh, si es que al finalizar
-no abre caelestia-shell (ejecutando ´caelestia shell -d´), ejecuta el script
+no abre caelestia-shell (ejecutando `caelestia shell -d`), ejecuta el script
 ifnotinstall.sh para crear el FrankenDebian (solo si eres insistente).
 
 ```
